@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap");
+
+* {
+  font-family: "TikTok Sans", sans-serif;
+}
+
+/* login_styles */
+.login-bg {
+  background-color: #f9faf5;
+  background-image: linear-gradient(
+      0deg,
+      rgba(46, 125, 60, 0.078) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(46, 125, 60, 0.078) 1px, transparent 1px);
+  background-size: 50px 50px;
+  min-height: 100vh;
+  animation:loginbg 20s linear 0s infinite alternate forwards;
+}
+
+@keyframes loginbg {
+  from {
+    background-position: 0px 0px 0px 0px;
+  }
+  to {
+    background-position: 40px 40px 40px 40px;
+  }
+}
