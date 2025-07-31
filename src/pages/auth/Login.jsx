@@ -2,14 +2,20 @@ import { useState } from "react";
 import { Card, Button, Divider, Typography, Form,Input,} from "antd";
 const { Title, Text } = Typography;
 import { loginUser,registerUser } from "../../api/authApi";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../store/context/AuthContext";
 
 const Login = () => {
   let [isLogin, setIslogin] = useState(true);
+ const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { setUserAndToken,error } = useAuth(); 
+
 
 // function to handle login user and register user
 const handleFinish=async(values)=>{
   console.log(values)
-
+  setLoading(true)
   try {
     if(isLogin){
         //  login logic 
@@ -18,6 +24,17 @@ const handleFinish=async(values)=>{
            localStorage.setItem("token",response.token)
            localStorage.setItem("user",JSON.stringify(response.user))
           //  rolebased login...
+           setUserAndToken(response.user, response.token);
+
+          if (response.user.role === 'vendor') {
+            navigate('/vendor');
+          } else if (response.user.role === 'admin') {
+            navigate('/admin');
+          } else {
+            navigate('/shop');
+            console.log("Navigating to /shop", response.user.role);
+          }
+          console.log('Login response:', response);
         }
     }else{
       // register logic
@@ -29,6 +46,7 @@ const handleFinish=async(values)=>{
 
       }
       await registerUser(newUser)
+      setIslogin(true)
     }
   } catch (error) {
     console.log("error",error.message || "")

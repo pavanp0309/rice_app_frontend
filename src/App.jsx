@@ -1,10 +1,10 @@
 import React from 'react'
-import Login from './pages/auth/Login'
+import Approutes from './routes/Approutes'
 
 const App = () => {
   return (
     <>
-      <Login/>
+     <Approutes/>
     </>
   )
 }
