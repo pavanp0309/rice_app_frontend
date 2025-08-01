@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar, Dropdown, Menu ,Badge} from 'antd';
 import {
@@ -8,10 +8,10 @@ import {
   OrderedListOutlined,
   ShoppingCartOutlined,
 } from '@ant-design/icons';
-import { AuthContext } from "../../store/context/AuthContext";
+import { AuthContext, useAuth } from "../../store/context/AuthContext";
 
 const Navbar = () => {
-const { user, logout } = useContext(AuthContext);
+const { user, logout } = useAuth();
 
   const navigate = useNavigate();
 
@@ -64,6 +64,7 @@ const handleMenuClick = ({ key }) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+        <Link to="/home"></Link>
 
         <div className="collapse navbar-collapse" id="navbarMenu">
           {/* Center nav links */}
