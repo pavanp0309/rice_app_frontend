@@ -55,7 +55,7 @@ export const AuthProvider=({children})=>{
     useEffect(()=>{
       if (state.isAuthenticated && !state.loading) { // checking weather user is logged in or not
         if (state.role === 'admin') navigate('/admin'); // checking weather user id admin
-        else if (state.role === 'dealer') navigate('/dealer');// // checking weather user id dealer
+        else if (state.role === 'vendor') navigate('/vendor');// // checking weather user id dealer
         else navigate('/shop'); //default naviagtion if user role is public
       }
 
